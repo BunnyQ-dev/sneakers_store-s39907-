@@ -1,0 +1,69 @@
+<%= form_with(model: sneaker, class: "needs-validation", data: { turbo: true }) do |f| %>
+  <div class="row g-3">
+    <div class="col-md-6">
+      <div class="form-floating">
+        <%= f.text_field :name, class: "form-control", placeholder: "Name", required: true %>
+        <%= f.label :name, class: "required" %>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="form-floating">
+        <%= f.number_field :price, class: "form-control", placeholder: "Price", step: "0.01", required: true %>
+        <%= f.label :price, class: "required" %>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="form-floating">
+        <%= f.number_field :size, class: "form-control", placeholder: "Size", step: "0.5", required: true %>
+        <%= f.label :size, class: "required" %>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="form-floating">
+        <%= f.text_field :color, class: "form-control", placeholder: "Color", required: true %>
+        <%= f.label :color, class: "required" %>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="form-floating">
+        <%= f.collection_select :brand_id, Brand.all, :id, :name,
+                                { prompt: "Select Brand" },
+                                { class: "form-select", required: true } %>
+        <%= f.label :brand_id, "Brand", class: "required" %>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="form-floating">
+        <%= f.collection_select :category_id, Category.all, :id, :name,
+                                { prompt: "Select Category" },
+                                { class: "form-select", required: true } %>
+        <%= f.label :category_id, "Category", class: "required" %>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="form-floating">
+        <%= f.number_field :stock, class: "form-control", placeholder: "Stock", min: 0, required: true %>
+        <%= f.label :stock, class: "required" %>
+      </div>
+    </div>
+
+    <div class="col-12">
+      <div class="form-floating">
+        <%= f.text_area :description, class: "form-control", placeholder: "Description", style: "height: 100px" %>
+        <%= f.label :description %>
+      </div>
+    </div>
+
+    <div class="col-12">
+      <%= f.button type: :submit, class: "btn btn-primary" do %>
+        <i class="fas fa-save me-1"></i>Save Sneaker
+      <% end %>
+    </div>
+  </div>
+<% end %>

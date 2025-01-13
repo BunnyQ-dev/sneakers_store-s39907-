@@ -1,0 +1,25 @@
+<%= turbo_frame_tag dom_id(brand) do %>
+  <div class="card shadow-sm mb-3">
+    <div class="card-body">
+      <div class="d-flex justify-content-between align-items-center">
+        <h5 class="card-title mb-0"><%= brand.name %></h5>
+        <div class="btn-group">
+          <%= link_to edit_brand_path(brand),
+                      class: "btn btn-sm btn-outline-primary",
+                      data: { turbo_frame: "brand_form" } do %>
+            <i class="fas fa-edit"></i>
+          <% end %>
+          <%= button_to brand_path(brand),
+                        method: :delete,
+                        class: "btn btn-sm btn-outline-danger",
+                        form: { data: { turbo_confirm: "Are you sure?" } } do %>
+            <i class="fas fa-trash"></i>
+          <% end %>
+        </div>
+      </div>
+      <% if brand.description.present? %>
+        <p class="card-text text-muted mt-2 mb-0"><%= brand.description %></p>
+      <% end %>
+    </div>
+  </div>
+<% end %>
