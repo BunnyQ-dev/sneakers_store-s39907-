@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sneaker Store</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbo-track': 'reload' %>
+  <%= javascript_include_tag "turbo", type: "module" %>
+  <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+  <div class="container">
+    <%= link_to root_path, class: 'navbar-brand d-flex align-items-center' do %>
+      <i class="fas fa-shoe-prints me-2"></i>
+      Sneaker Store
+    <% end %>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <%= link_to sneakers_path, class: 'nav-link' do %>
+            <i class="fas fa-running me-1"></i> Sneakers
+          <% end %>
+        </li>
+        <li class="nav-item">
+          <%= link_to brands_path, class: 'nav-link' do %>
+            <i class="fas fa-tag me-1"></i> Brands
+          <% end %>
+        </li>
+        <li class="nav-item">
+          <%= link_to categories_path, class: 'nav-link' do %>
+            <i class="fas fa-layer-group me-1"></i> Categories
+          <% end %>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container py-4">
+  <%= turbo_frame_tag "flash" do %>
+    <% if notice %>
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <i class="fas fa-check-circle me-2"></i>
+        <%= notice %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+      </div>
+    <% end %>
+    <% if alert %>
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <i class="fas fa-exclamation-circle me-2"></i>
+        <%= alert %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+      </div>
+    <% end %>
+  <% end %>
+
+  <%= yield %>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

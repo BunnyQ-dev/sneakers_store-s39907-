@@ -1,0 +1,64 @@
+<%= turbo_frame_tag "sneakers_list" do %>
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="display-4">
+      <i class="fas fa-running me-2"></i>Sneakers
+    </h1>
+    <%= link_to new_sneaker_path,
+                class: 'btn btn-primary btn-lg',
+                data: { turbo_frame: "sneaker_form" } do %>
+      <i class="fas fa-plus me-2"></i>New Sneaker
+    <% end %>
+  </div>
+
+  <%= turbo_frame_tag "sneaker_form" %>
+
+  <div class="row g-4" id="sneakers">
+    <% @sneakers.each do |sneaker| %>
+      <%= turbo_frame_tag dom_id(sneaker) do %>
+        <div class="col-md-4">
+          <div class="card h-100 shadow-sm hover-shadow">
+            <div class="position-relative">
+              <div class="badge bg-primary position-absolute top-0 end-0 m-2">
+                Stock: <%= sneaker.stock %>
+              </div>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title text-primary"><%= sneaker.name %></h5>
+              <h6 class="card-subtitle mb-2 text-muted">
+                <i class="fas fa-tag me-1"></i><%= sneaker.brand.name %>
+              </h6>
+              <div class="card-text">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <span class="h4 mb-0">$<%= number_with_precision(sneaker.price, precision: 2) %></span>
+                  <span class="badge bg-secondary"><%= sneaker.category.name %></span>
+                </div>
+                <p class="text-muted small mb-0">
+                  <i class="fas fa-palette me-1"></i><%= sneaker.color %> |
+                  <i class="fas fa-ruler me-1"></i>Size: <%= sneaker.size %>
+                </p>
+              </div>
+            </div>
+            <div class="card-footer bg-white border-top-0">
+              <div class="btn-group w-100">
+                <%= link_to sneaker_path(sneaker), class: 'btn btn-outline-primary' do %>
+                  <i class="fas fa-eye me-1"></i>View
+                <% end %>
+                <%= link_to edit_sneaker_path(sneaker),
+                            class: 'btn btn-outline-secondary',
+                            data: { turbo_frame: "sneaker_form" } do %>
+                  <i class="fas fa-edit me-1"></i>Edit
+                <% end %>
+                <%= button_to sneaker_path(sneaker),
+                              method: :delete,
+                              class: 'btn btn-outline-danger',
+                              form: { data: { turbo_confirm: 'Are you sure?' } } do %>
+                  <i class="fas fa-trash me-1"></i>Delete
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>

@@ -1,0 +1,21 @@
+<%= turbo_frame_tag "category_form" do %>
+  <div class="row">
+    <div class="col-lg-8 mx-auto">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1 class="mb-0">Edit Category</h1>
+          </div>
+
+          <%= render 'form', category: @category %>
+
+          <div class="mt-4">
+            <%= link_to category_path(@category), class: 'btn btn-light' do %>
+              <i class="fas fa-arrow-left me-1"></i>Cancel
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
