@@ -22,3 +22,9 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+
+
+Vitalii Syvak
+
+Projekt Ruby on Rails
