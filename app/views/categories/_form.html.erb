@@ -1,0 +1,24 @@
+<%= form_with(model: category, data: { turbo: true }) do |f| %>
+  <% if category.errors.any? %>
+    <div class="alert alert-danger">
+      <h4><%= pluralize(category.errors.count, "error") %> prohibited this category from being saved:</h4>
+      <ul>
+        <% category.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group mb-3">
+    <%= f.label :name, class: "form-label" %>
+    <%= f.text_field :name, class: "form-control", required: true %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit "Create Category", class: "btn btn-primary me-2" %>
+    <%= link_to "Cancel", categories_path,
+                class: "btn btn-secondary",
+                data: { turbo_frame: "_top" } %>
+  </div>
+<% end %>

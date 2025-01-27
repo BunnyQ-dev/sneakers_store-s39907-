@@ -1,0 +1,23 @@
+<%= turbo_frame_tag dom_id(sneaker) do %>
+  <div class="col-md-4 mb-4">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title"><%= sneaker.name %></h5>
+        <h6 class="card-subtitle mb-2 text-muted"><%= sneaker.brand.name %></h6>
+        <p class="card-text">
+          Price: $<%= number_with_precision(sneaker.price, precision: 2) %><br>
+          Category: <%= sneaker.category.name %><br>
+          Stock: <%= sneaker.stock %>
+        </p>
+        <%= link_to 'View', sneaker_path(sneaker), class: 'card-link' %>
+        <%= link_to 'Edit', edit_sneaker_path(sneaker),
+                    class: 'card-link',
+                    data: { turbo_frame: "sneaker_form" } %>
+        <%= button_to 'Delete', sneaker_path(sneaker),
+                      method: :delete,
+                      class: 'btn btn-link card-link text-danger',
+                      data: { turbo_confirm: 'Are you sure?' } %>
+      </div>
+    </div>
+  </div>
+<% end %>
